@@ -1,3 +1,5 @@
+let flip f x y = f y x
+
 (* TODO: Check if the command is installed. *)
 let ag = "ag"
 
@@ -23,7 +25,8 @@ let () =
     |> Unix.open_process_in in
   let rec doit results =
     try
-      input_line ic :: results
+      input_line ic
+      |> flip List.cons results
       |> doit
     with
     | End_of_file -> results in
