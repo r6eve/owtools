@@ -1,0 +1,13 @@
+opam-version: "1.2"
+name: "o-wtools"
+version: "0.0.1"
+maintainer: "r6eve <r6eve179f@gmail.com>"
+author: "r6eve <r6eve179f@gmail.com>"
+homepage: "https://github.com/r6eve/o-wtools"
+bug-reports: "https://github.com/r6eve/o-wtools/issues"
+license: "MIT"
+dev-repo: "https://github.com/r6eve/o-wtools.git"
+build: [
+  [make]
+]
+available: [ ocaml-version >= "4.06.0" ]
