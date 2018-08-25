@@ -7,7 +7,7 @@ all:
 	$(DUNE) build
 	mkdir -p bin
 	cp _build/install/default/bin/$(WAG) $(BIN_DIR)/$(WAG)
-	cp _build/install/default/bin/$(WFIND) $(BIN_DIR)/$(WFIND)
+	# cp _build/install/default/bin/$(WFIND) $(BIN_DIR)/$(WFIND)
 
 clean:
 	$(DUNE) clean
