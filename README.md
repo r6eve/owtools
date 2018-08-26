@@ -17,6 +17,7 @@ The original is [wgrep, wlocate, wfind - 兼雑記][original] .
 
 * OCaml (>= 4.06.0)
 * Dune
+* ocaml-re
 * w3m
 * ag, find, mlocate, etc.
 
@@ -24,7 +25,7 @@ The original is [wgrep, wlocate, wfind - 兼雑記][original] .
 
 ```console
 > opam switch 4.06.0
-> opam install dune
+> opam install dune re
 > git clone https://github.com/r6eve/o-wtools.git
 > cd o-wtools
 > make

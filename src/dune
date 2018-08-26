@@ -2,4 +2,5 @@
  (names wag wfind)
  (public_names wag wfind)
  (flags (-w A-4-9-40-42-44-45 -warn-error A-4-9-34-40-42-44-45-58))
- (libraries unix))
+ (libraries re
+            unix))
