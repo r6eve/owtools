@@ -1,7 +1,6 @@
 let flip f x y = f y x
 
 let all_color_regexp = Re.Perl.compile_pat "\x1b\\[(\\d*;?\\d*m|K)"
-let match_word_color_regexp = Re.Perl.compile_pat "\x1b\\[30;43m(\x1b?.*?)\x1b"
 
 let apostrophe = Re.Perl.compile_pat "'"
 let quotedbl = Re.Perl.compile_pat "\""
