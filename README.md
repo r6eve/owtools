@@ -4,7 +4,7 @@ o-wtools
 
 This repository includes a browser in terminal. The original is [wgrep, wlocate, wfind - 兼雑記][original].
 
-## Changes
+## Changes from the Original
 
 * Written in OCaml.
 * Sort results by path in lexicographic order.
