@@ -2,17 +2,17 @@ module Sys = Extensions.Sys
 module Unix = Extensions.Unix
 
 (* TODO: Check if the command is installed. *)
-let find = "find"
+let locate = "locate"
 
-let make_find_command argv =
+let make_locate_command argv =
   argv
-  |> List.cons find
+  |> List.cons locate
   |> String.concat " "
 
-let sort_find_hits lst =
+let sort_locate_hits lst =
   List.sort compare lst
 
-let w3m_html_of_find lines =
+let w3m_html_of_locate lines =
   lines
   |> List.map (fun s ->
     "<a href=\"" ^ s ^ "\">" ^ s ^ "</a><br>")
@@ -20,17 +20,17 @@ let w3m_html_of_find lines =
 let () =
   let ic =
     Sys.get_argv_list ()
-    |> make_find_command
+    |> make_locate_command
     |> Unix.open_process_in in
   let ss = Sys.read_from_stdin ic in
   ic
   |> Unix.close_process_in
-  |> Unix.check_exit "find";
+  |> Unix.check_exit "locate";
   let ss =
     ss
     |> List.map Util.escape_html
-    |> sort_find_hits
-    |> w3m_html_of_find in
+    |> sort_locate_hits
+    |> w3m_html_of_locate in
   let oc =
     W3m.make_command ()
     |> Unix.open_process_out in

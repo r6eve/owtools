@@ -1,10 +1,8 @@
-*NOT RELEASED*
-
 o-wtools
 ========
 [![Build Status][]][CI Results]
 
-The original is [wgrep, wlocate, wfind - 兼雑記][original] .
+This repository includes a browser in terminal. The original is [wgrep, wlocate, wfind - 兼雑記][original].
 
 ## Changes
 
@@ -13,13 +11,29 @@ The original is [wgrep, wlocate, wfind - 兼雑記][original] .
 
 ## Demo
 
+Useful aliase.
+
+![fig1][]
+
+Browse.
+
+![fig2][]
+
+Open file.
+
+![fig3][]
+
+Edit file.
+
+![fig4][]
+
 ## Requirements
 
 * OCaml (>= 4.06.0)
 * Dune
 * ocaml-re
 * w3m
-* ag, find, mlocate, etc.
+* ag, find, mlocate
 
 ## Installation
 
@@ -29,8 +43,19 @@ The original is [wgrep, wlocate, wfind - 兼雑記][original] .
 > git clone https://github.com/r6eve/o-wtools.git
 > cd o-wtools
 > make
+> ls bin
+wag*  wfind*  wlocate*
 ```
+
+## Contributors
+
+- [r6eve][] - Neat
 
 [Build Status]: https://travis-ci.org/r6eve/o-wtools.svg?branch=master
 [CI Results]: https://travis-ci.org/r6eve/o-wtools
 [original]: http://shinh.hatenablog.com/entry/20070429/1177827792
+[fig1]: https://raw.githubusercontent.com/r6eve/screenshots/master/o-wtools/fig1.png
+[fig2]: https://raw.githubusercontent.com/r6eve/screenshots/master/o-wtools/fig2.png
+[fig3]: https://raw.githubusercontent.com/r6eve/screenshots/master/o-wtools/fig3.png
+[fig4]: https://raw.githubusercontent.com/r6eve/screenshots/master/o-wtools/fig4.png
+[r6eve]: https://github.com/r6eve
