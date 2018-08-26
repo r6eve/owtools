@@ -53,6 +53,19 @@ let sort_ag_hits lst =
     else compare x_n y_n in
   List.sort cmp lst
 
+let w3m_html_of_ag_color lines =
+  lines
+  |> List.map (fun s ->
+    (* TODO: Replace string by \1. *)
+    let m =
+      s
+      |> Re.matches Util.match_word_color_regexp
+      |> List.hd in
+    let by_str = "<b>" ^ String.sub m 8 (String.length m - 9) ^ "</b>\x1b" in
+    s
+    |> Re.replace_string Util.match_word_color_regexp ~by:by_str
+    |> Re.replace_string Util.all_color_regexp ~by:"")
+
 let () =
   let ic =
     get_argv_list ()
@@ -62,6 +75,16 @@ let () =
     ic
     |> read_from_stdin
     |> sort_ag_hits in
+  ic
+  |> Unix.close_process_in
+  |> check_exit;
+  inputs
+  |> w3m_html_of_ag_color
+  |> List.iter (fun l -> print_endline l)
+  (*
+  let oc =
+    inputs
+    |> w3m_color_of_ag_color
+    |> make_w3m_command
   List.iter (fun s -> print_endline s) inputs;
-  Unix.close_process_in ic
-  |> check_exit
+  *)
