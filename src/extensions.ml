@@ -23,7 +23,10 @@ module Unix = struct
   let check_exit process exit_status =
     match exit_status with
     | Unix.WEXITED 0 -> ()
-    | Unix.WEXITED n -> (Printf.printf "The `%s` terminated normally by [%d]\n" process n; exit n)
+    | Unix.WEXITED n -> begin
+      (* Exit silengt when the process terminated normally. *)
+      exit n
+    end
     | Unix.WSIGNALED n -> (Printf.eprintf "The `%s` was killed by [%d]\n" process n; exit n)
     | Unix.WSTOPPED n -> (Printf.eprintf "The `%s` was stopped by [%d]\n" process n; exit n)
 end
