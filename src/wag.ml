@@ -43,6 +43,7 @@ let w3m_html_of_ag_color lines =
     s
     |> Re.replace_string match_word_color_regexp ~by:by_str
     |> Re.replace_string Util.all_color_regexp ~by:""
+    |> Util.escape_html
     |> Re.Str.replace_first anchor_of_path_and_line_num_regexp "<a href=\"\\1#\\2\">\\0</a>"
     |> Util.flip ( ^ ) "<br>")
 
@@ -57,7 +58,6 @@ let () =
   |> Unix.check_exit "ag";
   let ss =
     ss
-    |> List.map Util.escape_html
     |> sort_ag_hits
     |> w3m_html_of_ag_color in
   let oc =
