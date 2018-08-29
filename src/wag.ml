@@ -9,6 +9,7 @@ let anchor_of_path_and_line_num_regexp = Re.Str.regexp "^\\([^:]+\\):\\([0-9]+\\
 
 let make_ag_command argv =
   argv
+  |> List.map (fun s -> if String.contains s ' ' then "'" ^ s ^ "'" else s)
   |> List.append [ag; "--color"]
   |> String.concat " "
 
