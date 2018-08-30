@@ -23,7 +23,7 @@ Open file.
 
 ![fig3][]
 
-Edit file.
+Edit file (set your editor in `$HOME/.w3m/config`).
 
 ![fig4][]
 
