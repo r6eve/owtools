@@ -11,7 +11,7 @@ This repository includes a browser in terminal. The original is [wgrep, wlocate,
 
 ## Demo
 
-Useful aliase.
+Useful alias.
 
 ![fig1][]
 
