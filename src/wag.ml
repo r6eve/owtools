@@ -1,3 +1,4 @@
+module List = Extensions.List
 module Sys = Extensions.Sys
 module Unix = Extensions.Unix
 
@@ -48,15 +49,29 @@ let w3m_html_of_ag_color lines =
     |> Re.Str.replace_first anchor_of_path_and_line_num_regexp "<a href=\"\\1#\\2\">\\0</a>"
     |> Util.flip ( ^ ) "<br>")
 
+let reg_file_p path =
+  try
+    let stats = Unix.stat path in
+    match stats.st_kind with
+    | Unix.S_REG -> true
+    | _ -> false
+  with
+  | _ -> false
+
 let () =
+  let argv_list = Sys.get_argv_list () in
+  let last_arg = List.last argv_list in
   let ic =
-    Sys.get_argv_list ()
+    argv_list
     |> make_ag_command
     |> Unix.open_process_in in
   let ss = Sys.read_from_stdin ic in
   ic
   |> Unix.close_process_in
   |> Unix.check_exit "ag";
+  let ss =
+    if reg_file_p last_arg then List.map (fun s -> last_arg ^ ":" ^ s) ss
+    else ss in
   let ss =
     ss
     |> sort_ag_hits

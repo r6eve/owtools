@@ -1,3 +1,15 @@
+module List = struct
+  include List
+
+  let last l =
+    let rec doit l =
+      match l with
+      | [] -> failwith "last"
+      | [a] -> a
+      | _ :: l -> doit l in
+    doit l
+end
+
 module Sys = struct
   include Sys
 
