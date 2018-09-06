@@ -47,6 +47,14 @@ Edit file (set your editor in `$HOME/.w3m/config`).
 wag*  wfind*  wlocate*
 ```
 
+## Useful Aliases and Functions
+
+```bash
+alias wa='wag -U --hidden --ignore-dir .git --ignore-dir _build'
+
+wf(){ wfind "$@" -not -path '*/.git/*' -a -not -path '*/target/*' -a -type f }
+```
+
 ## Contributors
 
 - [r6eve][] - Neat
