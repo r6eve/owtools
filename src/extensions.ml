@@ -36,7 +36,7 @@ module Unix = struct
     match exit_status with
     | Unix.WEXITED 0 -> ()
     | Unix.WEXITED n -> begin
-      (* Exit silengt when the process terminated normally. *)
+      (* Exit silently when the process terminated normally. *)
       exit n
     end
     | Unix.WSIGNALED n -> (Printf.eprintf "The `%s` was killed by [%d]\n" process n; exit n)
