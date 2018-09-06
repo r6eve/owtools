@@ -24,9 +24,8 @@ let () =
     |> make_find_command
     |> Unix.open_process_in in
   let ss = Sys.read_from_stdin ic in
-  ic
-  |> Unix.close_process_in
-  |> Unix.check_exit "find";
+  (* Discard exit status. *)
+  let _ = Unix.close_process_in ic in
   let ss =
     ss
     |> sort_find_hits
