@@ -1,4 +1,5 @@
 module List = Extensions.List
+module String = Extensions.String
 module Sys = Extensions.Sys
 module Unix = Extensions.Unix
 
@@ -8,9 +9,9 @@ let ag = "ag"
 let match_word_color_regexp = Re.Perl.compile_pat "\x1b\\[30;43m(\x1b?.*?)\x1b"
 let anchor_of_path_and_line_num_regexp = Re.Str.regexp "^\\([^:]+\\):\\([0-9]+\\)"
 
-let make_ag_command argv =
-  argv
-    |> List.map (fun s -> if String.contains s ' ' then "'" ^ s ^ "'" else s)
+let make_ag_command opts =
+  opts
+    |> List.map (fun s -> if String.contains s ' ' then String.quote s else s)
     |> List.append [ag; "--color"]
     |> String.concat " "
 

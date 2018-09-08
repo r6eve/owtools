@@ -1,3 +1,4 @@
+module String = Extensions.String
 module Sys = Extensions.Sys
 module Unix = Extensions.Unix
 
@@ -6,7 +7,7 @@ let find = "find"
 
 let make_find_command argv =
   argv
-    |> List.map (fun s -> if String.contains s '*' then "'" ^ s ^ "'" else s)
+    |> List.map (fun s -> if String.contains s '*' then String.quote s else s)
     |> List.cons find
     |> String.concat " "
 

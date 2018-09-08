@@ -10,6 +10,13 @@ module List = struct
     doit l
 end
 
+module String = struct
+  include String
+
+  let quote s =
+    "'" ^ s ^ "'"
+end
+
 module Sys = struct
   include Sys
 
