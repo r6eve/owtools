@@ -6,6 +6,7 @@ let find = "find"
 
 let make_find_command argv =
   argv
+  |> List.map (fun s -> if String.contains s '*' then "'" ^ s ^ "'" else s)
   |> List.cons find
   |> String.concat " "
 
