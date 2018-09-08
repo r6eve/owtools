@@ -15,17 +15,18 @@ module Sys = struct
 
   let get_argv_list () =
     Sys.argv
-    |> Array.to_list
-    |> List.tl
+      |> Array.to_list
+      |> List.tl
 
   let read_from_stdin input_channel =
     let rec doit acc =
       try
-        input_line input_channel
-        |> Util.flip List.cons acc
-        |> doit
+        input_channel
+          |> input_line
+          |> Util.flip List.cons acc
+          |> doit
       with
-      | End_of_file -> acc in
+        End_of_file -> acc in
     doit []
 end
 
@@ -35,10 +36,20 @@ module Unix = struct
   let check_exit process exit_status =
     match exit_status with
     | Unix.WEXITED 0 -> ()
-    | Unix.WEXITED n -> begin
+
+    | Unix.WEXITED n ->
       (* Exit silently when the process terminated normally. *)
       exit n
-    end
-    | Unix.WSIGNALED n -> (Printf.eprintf "The `%s` was killed by [%d]\n" process n; exit n)
-    | Unix.WSTOPPED n -> (Printf.eprintf "The `%s` was stopped by [%d]\n" process n; exit n)
+
+    | Unix.WSIGNALED n ->
+      begin
+        Printf.eprintf "The `%s` was killed by [%d]\n" process n;
+        exit n
+      end
+
+    | Unix.WSTOPPED n ->
+      begin
+        Printf.eprintf "The `%s` was stopped by [%d]\n" process n;
+        exit n
+      end
 end

@@ -10,9 +10,9 @@ let anchor_of_path_and_line_num_regexp = Re.Str.regexp "^\\([^:]+\\):\\([0-9]+\\
 
 let make_ag_command argv =
   argv
-  |> List.map (fun s -> if String.contains s ' ' then "'" ^ s ^ "'" else s)
-  |> List.append [ag; "--color"]
-  |> String.concat " "
+    |> List.map (fun s -> if String.contains s ' ' then "'" ^ s ^ "'" else s)
+    |> List.append [ag; "--color"]
+    |> String.concat " "
 
 let sort_ag_hits lst =
   (* TODO: Check if the `path` includes ':'. *)
@@ -20,8 +20,8 @@ let sort_ag_hits lst =
     (* Aim at a specific target. *)
     match
       path
-      |> Re.replace_string Util.all_color_regexp ~by:""
-      |> String.split_on_char ':'
+        |> Re.replace_string Util.all_color_regexp ~by:""
+        |> String.split_on_char ':'
     with
     | filename :: n_str :: _ -> (filename, int_of_string n_str)
     | _ -> (prerr_endline "error in sorting"; exit 1) in
@@ -35,19 +35,19 @@ let sort_ag_hits lst =
 
 let w3m_html_of_ag_color lines =
   lines
-  |> List.map (fun s ->
-    (* TODO: Replace string by \1. *)
-    let m =
+    |> List.map (fun s ->
+      (* TODO: Replace string by \1. *)
+      let m =
+        s
+          |> Re.matches match_word_color_regexp
+          |> List.hd in
+      let by_str = "<b>" ^ String.sub m 8 (String.length m - 9) ^ "</b>\x1b" in
       s
-      |> Re.matches match_word_color_regexp
-      |> List.hd in
-    let by_str = "<b>" ^ String.sub m 8 (String.length m - 9) ^ "</b>\x1b" in
-    s
-    |> Util.escape_html
-    |> Re.replace_string match_word_color_regexp ~by:by_str
-    |> Re.replace_string Util.all_color_regexp ~by:""
-    |> Re.Str.replace_first anchor_of_path_and_line_num_regexp "<a href=\"\\1#\\2\">\\0</a>"
-    |> Util.flip ( ^ ) "<br>")
+        |> Util.escape_html
+        |> Re.replace_string match_word_color_regexp ~by:by_str
+        |> Re.replace_string Util.all_color_regexp ~by:""
+        |> Re.Str.replace_first anchor_of_path_and_line_num_regexp "<a href=\"\\1#\\2\">\\0</a>"
+        |> Util.flip ( ^ ) "<br>")
 
 let reg_file_p path =
   try
@@ -63,24 +63,24 @@ let () =
   let last_arg = List.last argv_list in
   let ic =
     argv_list
-    |> make_ag_command
-    |> Unix.open_process_in in
+      |> make_ag_command
+      |> Unix.open_process_in in
   let ss = Sys.read_from_stdin ic in
   ic
-  |> Unix.close_process_in
-  |> Unix.check_exit "ag";
+    |> Unix.close_process_in
+    |> Unix.check_exit "ag";
   let ss =
     if reg_file_p last_arg then List.map (fun s -> last_arg ^ ":" ^ s) ss
     else ss in
   let ss =
     ss
-    |> sort_ag_hits
-    |> w3m_html_of_ag_color in
+      |> sort_ag_hits
+      |> w3m_html_of_ag_color in
   let oc =
     W3m.make_command ()
-    |> Unix.open_process_out in
+      |> Unix.open_process_out in
   ss
-  |> List.iter (fun s -> output_string oc s);
+    |> List.iter (fun s -> output_string oc s);
   oc
-  |> Unix.close_process_out
-  |> Unix.check_exit "w3m"
+    |> Unix.close_process_out
+    |> Unix.check_exit "w3m"
