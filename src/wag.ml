@@ -11,9 +11,32 @@ let anchor_of_path_and_line_num_regexp = Re.Str.regexp "^\\([^:]+\\):\\([0-9]+\\
 
 let make_ag_command opts =
   opts
-    |> List.map (fun s -> if String.contains s ' ' then String.quote s else s)
+    |> List.map (fun s ->
+      if String.contains s ' ' then String.quote_wildcard s else s)
     |> List.append [ag; "--color"]
     |> String.concat " "
+
+let make_ag_process opts =
+  opts
+    |> make_ag_command
+    |> Unix.open_process_in
+
+let close_ag_process in_channel =
+  in_channel
+    |> Unix.close_process_in
+    |> Unix.check_exit "ag"
+
+let reg_file_p path =
+  try
+    let stats = Unix.stat path in
+    match stats.st_kind with
+    | Unix.S_REG -> true
+    | _ -> false
+  with
+  | _ -> false
+
+let concat_filename filename ss =
+  List.map (fun s -> filename ^ ":" ^ s) ss
 
 let sort_ag_hits lst =
   (* TODO: Check if the `path` includes ':'. *)
@@ -34,7 +57,7 @@ let sort_ag_hits lst =
     else compare x_n y_n in
   List.sort cmp lst
 
-let w3m_html_of_ag_color lines =
+let w3m_html_of_ag lines =
   lines
     |> List.map (fun s ->
       (* TODO: Replace string by \1. *)
@@ -50,38 +73,17 @@ let w3m_html_of_ag_color lines =
         |> Re.Str.replace_first anchor_of_path_and_line_num_regexp "<a href=\"\\1#\\2\">\\0</a>"
         |> Util.flip ( ^ ) "<br>")
 
-let reg_file_p path =
-  try
-    let stats = Unix.stat path in
-    match stats.st_kind with
-    | Unix.S_REG -> true
-    | _ -> false
-  with
-  | _ -> false
-
 let () =
   let argv_list = Sys.get_argv_list () in
   let last_arg = List.last argv_list in
-  let ic =
-    argv_list
-      |> make_ag_command
-      |> Unix.open_process_in in
-  let ss = Sys.read_from_stdin ic in
-  ic
-    |> Unix.close_process_in
-    |> Unix.check_exit "ag";
+  let proc = make_ag_process argv_list in
+  let ss = Sys.read_from_stdin proc in
+  close_ag_process proc;
   let ss =
-    if reg_file_p last_arg then List.map (fun s -> last_arg ^ ":" ^ s) ss
+    if reg_file_p last_arg then concat_filename last_arg ss
     else ss in
-  let ss =
-    ss
-      |> sort_ag_hits
-      |> w3m_html_of_ag_color in
-  let oc =
-    W3m.make_command ()
-      |> Unix.open_process_out in
-  ss
-    |> List.iter (fun s -> output_string oc s);
-  oc
-    |> Unix.close_process_out
-    |> Unix.check_exit "w3m"
+  let ss = sort_ag_hits ss in
+  let html = w3m_html_of_ag ss in
+  let proc = W3m.make_process () in
+  W3m.output proc html;
+  W3m.close_process proc

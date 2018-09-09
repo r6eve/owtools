@@ -22,8 +22,8 @@ let close_locate_process in_channel =
 let sort_locate_hits lst =
   List.sort compare lst
 
-let w3m_html_of_locate lines =
-  lines
+let w3m_html_of_locate ss =
+  ss
     |> List.map (fun s ->
       let s = Util.escape_html s in
       "<a href=\"" ^ s ^ "\">" ^ s ^ "</a><br>")
@@ -34,10 +34,8 @@ let () =
       |> make_locate_process in
   let ss = Sys.read_from_stdin proc in
   close_locate_process proc;
-  let ss =
-    ss
-      |> sort_locate_hits
-      |> w3m_html_of_locate in
+  let ss = sort_locate_hits ss in
+  let html = w3m_html_of_locate ss in
   let proc = W3m.make_process () in
-  W3m.output proc ss;
+  W3m.output proc html;
   W3m.close_process proc

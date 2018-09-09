@@ -13,7 +13,7 @@ end
 module String = struct
   include String
 
-  let quote s =
+  let quote_wildcard s =
     "'" ^ s ^ "'"
 end
 
