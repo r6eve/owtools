@@ -32,7 +32,7 @@ let () =
       |> make_find_process in
   let ss = Sys.read_from_stdin proc in
   (* Discard exit status. *)
-  let _ = Unix.close_process_in proc in
+  Unix.close_process_in proc |> ignore;
   let ss = sort_find_hits ss in
   let html = w3m_html_of_find ss in
   let proc = W3m.make_process () in
