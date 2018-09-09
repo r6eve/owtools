@@ -23,7 +23,7 @@ let sort_find_hits lst =
 let w3m_html_of_find lines =
   lines
     |> List.map (fun s ->
-      let s = Util.escape_html s in
+      let s = String.escape_html s in
       "<a href=\"" ^ s ^ "\">" ^ s ^ "</a><br>")
 
 let () =
