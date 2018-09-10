@@ -1,4 +1,4 @@
-(** Extensions of poor OCaml standard libraries *)
+(** Extensions of poor OCaml standard libraries. *)
 
 module List : sig
   include module type of List
