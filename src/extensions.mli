@@ -38,4 +38,9 @@ module Unix : sig
   include module type of Unix
 
   val check_exit : string -> process_status -> unit
+  (** Check the exit status of the process name. There are three patterns.
+      1. Do nothing when the process terminated normally by 0.
+      2. Exit silently when the process terminated normally by not-zero.
+      3. Print error message and exit when the process was killed by signal or
+         stopped by signal. *)
 end
