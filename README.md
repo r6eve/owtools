@@ -55,6 +55,17 @@ alias wa='wag -U --hidden --ignore-dir .git --ignore-dir _build'
 wf(){ wfind "$@" -not -path '*/.git/*' -a -not -path '*/target/*' -a -type f }
 ```
 
+## Contributing
+
+If you would like to help making this repository, take the following steps.
+
+1. Fork this repository: https://github.com/r6eve/o-wtools/fork
+2. Switch branchs: `git checkout -b new-feature`
+3. Do something.
+4. Commits: `git commit -am 'add some feature'`
+5. Push to your repository: `git push origin new-feature`
+6. Send a pull request.
+
 ## Contributors
 
 - [r6eve][] - Neat
