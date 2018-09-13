@@ -5,6 +5,9 @@ module Unix = Extensions.Unix
 
 let ag = "ag"
 
+(* It's up to you. *)
+let max_length = 300
+
 let match_word_color_regexp = Re.Perl.compile_pat "\x1b\\[30;43m(\x1b?.*?)\x1b"
 let anchor_of_path_and_line_num_regexp = Re.Str.regexp "^\\([^:]+\\):\\([0-9]+\\)"
 
@@ -56,6 +59,9 @@ let sort_ag_hits lst =
     else compare x_n y_n in
   List.sort cmp lst
 
+let set_max_length s =
+  if String.length s >= max_length then String.sub s 0 max_length else s
+
 let w3m_html_of_ag lines =
   lines
     |> List.map (fun s ->
@@ -66,6 +72,7 @@ let w3m_html_of_ag lines =
           |> List.hd in
       let by_str = "<b>" ^ String.sub m 8 (String.length m - 9) ^ "</b>\x1b" in
       s
+        |> set_max_length
         |> String.escape_html
         |> Re.replace_string match_word_color_regexp ~by:by_str
         |> Re.replace_string Util.all_color_regexp ~by:""
