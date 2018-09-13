@@ -3,7 +3,6 @@ module String = Extensions.String
 module Sys = Extensions.Sys
 module Unix = Extensions.Unix
 
-(* TODO: Check if the command is installed. *)
 let ag = "ag"
 
 let match_word_color_regexp = Re.Perl.compile_pat "\x1b\\[30;43m(\x1b?.*?)\x1b"

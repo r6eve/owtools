@@ -1,6 +1,5 @@
 module Unix = Extensions.Unix
 
-(* TODO: Check if the command is installed. *)
 let w3m = "w3m"
 
 let make_command () =

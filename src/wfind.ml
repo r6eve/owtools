@@ -2,7 +2,6 @@ module String = Extensions.String
 module Sys = Extensions.Sys
 module Unix = Extensions.Unix
 
-(* TODO: Check if the command is installed. *)
 let find = "find"
 
 let make_find_command opts =
