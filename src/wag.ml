@@ -60,7 +60,7 @@ let sort_ag_hits lst =
   List.sort cmp lst
 
 let set_max_length s =
-  if String.length s >= max_length then String.sub s 0 max_length else s
+  if String.length s >= max_length then String.sub s 0 max_length ^ "<CUT>" else s
 
 let w3m_html_of_ag lines =
   lines
