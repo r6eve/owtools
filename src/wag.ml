@@ -5,11 +5,18 @@ module Unix = Extensions.Unix
 
 let ag = "ag"
 
-(* It's up to you. *)
-let max_length = 300
-
 let match_word_color_regexp = Re.Perl.compile_pat "\x1b\\[30;43m(\x1b?.*?)\x1b"
 let anchor_of_path_and_line_num_regexp = Re.Str.regexp "^\\([^:]+\\):\\([0-9]+\\)"
+
+let get_max_length_env () =
+  try
+    "MAX_LENGTH"
+      |> Sys.getenv
+      |> int_of_string
+      |> Util.some_of_x
+  with
+  | Not_found
+  | Failure _ -> None
 
 let make_ag_command opts =
   opts
@@ -60,7 +67,9 @@ let sort_ag_hits lst =
   List.sort cmp lst
 
 let set_max_length s =
-  if String.length s >= max_length then String.sub s 0 max_length ^ "<CUT>" else s
+  match get_max_length_env () with
+  | Some n when String.length s >= n -> String.sub s 0 n ^ "<CUT>"
+  | _ -> s
 
 let w3m_html_of_ag lines =
   lines
