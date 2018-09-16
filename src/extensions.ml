@@ -15,6 +15,14 @@ module List = struct
     doit l
 end
 
+module CharSet = Set.Make(
+  struct
+    type t = char
+    let compare a b = Char.code a - Char.code b
+  end)
+
+let glob_set = CharSet.of_list ['*'; '?'; '['; ']']
+
 let ampersand = Re.Perl.compile_pat "&"
 let apostrophe = Re.Perl.compile_pat "'"
 let quotedbl = Re.Perl.compile_pat "\""
@@ -24,8 +32,13 @@ let greater = Re.Perl.compile_pat ">"
 module String = struct
   include String
 
-  let quote_wildcard s =
-    "'" ^ s ^ "'"
+  let quote_glob s =
+    let n = String.length s in
+    let rec doit i =
+      if i = n then s
+      else if CharSet.mem (String.get s i) glob_set then "'" ^ s ^ "'"
+      else doit (i + 1) in
+    doit 0
 
   let escape_html str =
     str

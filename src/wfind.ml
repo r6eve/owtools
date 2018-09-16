@@ -7,8 +7,7 @@ let find = "find"
 
 let make_find_command opts =
   opts
-    |> List.map (fun s ->
-      if String.contains s '*' then String.quote_wildcard s else s)
+    |> List.map (fun s -> String.quote_glob s)
     |> List.cons find
     |> String.concat " "
 

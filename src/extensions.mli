@@ -14,8 +14,9 @@ end
 module String : sig
   include module type of String
 
-  val quote_wildcard : string -> string
-  (** Surround the given string with quotes. *)
+  val quote_glob : string -> string
+  (** Return a surrounded string with quotes if the given string contains
+      glob, otherwise itself. *)
 
   val escape_html : string -> string
   (** Escape the string of HTML format. i.e. replace those strings.

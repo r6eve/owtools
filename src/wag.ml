@@ -21,7 +21,7 @@ let get_max_length_env () =
 let make_ag_command opts =
   opts
     |> List.map (fun s ->
-      if String.contains s ' ' then String.quote_wildcard s else s)
+      if String.contains s ' ' then "'" ^ s ^ "'" else s)
     |> List.append [ag; "--color"]
     |> String.concat " "
 
