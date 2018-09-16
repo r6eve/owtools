@@ -1,3 +1,4 @@
+module List = Extensions.List
 module String = Extensions.String
 module Sys = Extensions.Sys
 module Unix = Extensions.Unix
@@ -16,6 +17,10 @@ let make_find_process opts =
     |> make_find_command
     |> Unix.open_process_in
 
+let check_find_hits lst =
+  if List.is_empty lst then exit 1
+  else ()
+
 let sort_find_hits lst =
   List.sort compare lst
 
@@ -32,6 +37,7 @@ let () =
   let ss = Sys.read_from_stdin proc in
   (* Discard exit status. *)
   Unix.close_process_in proc |> ignore;
+  check_find_hits ss;
   let ss = sort_find_hits ss in
   let html = w3m_html_of_find ss in
   let proc = W3m.make_process () in

@@ -3,6 +3,9 @@
 module List : sig
   include module type of List
 
+  val is_empty : 'a list -> bool
+  (** Return true if the given list is empty, otherwise false. *)
+
   val last : 'a list -> 'a
   (** Return the last element of the given list. Raise [Failure "last"] if the
       list is empty. *)

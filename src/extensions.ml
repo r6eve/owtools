@@ -1,6 +1,11 @@
 module List = struct
   include List
 
+  let is_empty l =
+    match l with
+    | [] -> true
+    | _ -> false
+
   let last l =
     let rec doit l =
       match l with
