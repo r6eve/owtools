@@ -18,10 +18,13 @@ let get_max_length_env () =
   | Not_found
   | Failure _ -> None
 
+let quote_string_including_spaces s =
+  if String.contains s ' ' then "'" ^ s ^ "'"
+  else s
+
 let make_ag_command opts =
   opts
-    |> List.map (fun s ->
-      if String.contains s ' ' then "'" ^ s ^ "'" else s)
+    |> List.map (fun s -> quote_string_including_spaces s)
     |> List.append [ag; "--color"]
     |> String.concat " "
 
