@@ -79,14 +79,14 @@ let w3m_html_of_ag lines =
     |> List.map (fun s ->
       (* TODO: Replace string by \1. *)
       let m =
-        s
-          |> Re.matches match_word_color_regexp
-          |> List.hd in
-      let by_str = "<b>" ^ String.sub m 8 (String.length m - 9) ^ "</b>\x1b" in
+        match Re.matches match_word_color_regexp s with
+        | [] -> failwith "error in matching string"
+        | hd :: _ -> hd in
+      let by_bold = "<b>" ^ String.sub m 8 (String.length m - 9) ^ "</b>\x1b" in
       s
         |> set_max_length
         |> String.escape_html
-        |> Re.replace_string match_word_color_regexp ~by:by_str
+        |> Re.replace_string match_word_color_regexp ~by:by_bold
         |> Re.replace_string Util.all_color_regexp ~by:""
         |> Re.Str.replace_first anchor_of_path_and_line_num_regexp "<a href=\"\\1#\\2\">\\0</a>"
         |> Util.flip ( ^ ) "<br>")
