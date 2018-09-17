@@ -11,6 +11,9 @@ all:
 	cp _build/install/default/bin/$(WFIND) $(BIN_DIR)/$(WFIND)
 	cp _build/install/default/bin/$(WLOCATE) $(BIN_DIR)/$(WLOCATE)
 
+test:
+	$(DUNE) runtest
+
 clean:
 	$(DUNE) clean
 	-rm -rf $(BIN_DIR)

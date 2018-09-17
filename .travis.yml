@@ -17,10 +17,11 @@ install:
   - bash -ex .travis-ocaml.sh
   - eval `opam config env`
   - opam update
-  - opam install --yes dune re
+  - opam install --yes dune re qcheck
 
 script:
   - make
+  - make test
 
 notifications:
   email:
