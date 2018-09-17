@@ -1,7 +1,7 @@
+open Owtools
 module String = Owtools.Extensions.String
 module Sys = Owtools.Extensions.Sys
 module Unix = Owtools.Extensions.Unix
-module W3m = Owtools.W3m
 
 let locate = "locate"
 

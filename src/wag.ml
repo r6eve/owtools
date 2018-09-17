@@ -1,9 +1,8 @@
+open Owtools
 module List = Owtools.Extensions.List
 module String = Owtools.Extensions.String
 module Sys = Owtools.Extensions.Sys
 module Unix = Owtools.Extensions.Unix
-module Util = Owtools.Util
-module W3m = Owtools.W3m
 
 let ag = "ag"
 
