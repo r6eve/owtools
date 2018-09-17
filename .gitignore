@@ -1,6 +1,6 @@
 bin
 wag
 wfind
-o-wtools.install
+owtools.install
 _build
 .merlin

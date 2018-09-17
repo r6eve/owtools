@@ -1,0 +1,4 @@
+(library
+ (name owtools)
+ (public_name owtools)
+ (libraries re unix))

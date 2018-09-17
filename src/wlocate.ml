@@ -1,6 +1,7 @@
-module String = Extensions.String
-module Sys = Extensions.Sys
-module Unix = Extensions.Unix
+module String = Owtools.Extensions.String
+module Sys = Owtools.Extensions.Sys
+module Unix = Owtools.Extensions.Unix
+module W3m = Owtools.W3m
 
 let locate = "locate"
 

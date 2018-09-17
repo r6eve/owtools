@@ -1,12 +1,12 @@
 opam-version: "1.2"
-name: "o-wtools"
+name: "owtools"
 version: "0.0.2"
 maintainer: "r6eve <r6eve179f@gmail.com>"
 author: "r6eve <r6eve179f@gmail.com>"
-homepage: "https://github.com/r6eve/o-wtools"
-bug-reports: "https://github.com/r6eve/o-wtools/issues"
+homepage: "https://github.com/r6eve/owtools"
+bug-reports: "https://github.com/r6eve/owtools/issues"
 license: "MIT"
-dev-repo: "https://github.com/r6eve/o-wtools.git"
+dev-repo: "https://github.com/r6eve/owtools.git"
 build: [
   [make]
 ]
