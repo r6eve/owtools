@@ -52,7 +52,7 @@ wag*  wfind*  wlocate*
 ```bash
 alias wa='MAX_LENGTH=300 wag -U --hidden --ignore-dir .git --ignore-dir _build'
 
-wf(){ wfind "$@" -not -path '*/.git/*' -a -not -path '*/target/*' -a -type f }
+wf(){ wfind "$@" -not -path '*/.git/*' -a -not -path '*/target/*' -a -not -path "*/_build/*" -a -type f }
 ```
 
 ## Contributing
