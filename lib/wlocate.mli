@@ -1,1 +1,1 @@
-val run : unit -> unit
+val main : unit -> unit

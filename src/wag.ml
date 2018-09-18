@@ -1,1 +1,1 @@
-let () = Owtools.Wag.run ()
+let () = Owtools.Wag.main ()

@@ -1,1 +1,1 @@
-let () = Owtools.Wlocate.run ()
+let () = Owtools.Wlocate.main ()

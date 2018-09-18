@@ -1,1 +1,1 @@
-let () = Owtools.Wfind.run ()
+let () = Owtools.Wfind.main ()

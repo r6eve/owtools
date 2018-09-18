@@ -29,7 +29,7 @@ let w3m_html_of_find lines =
       let s = String.escape_html s in
       "<a href=\"" ^ s ^ "\">" ^ s ^ "</a><br>")
 
-let run () =
+let main () =
   let proc =
     Sys.get_argv_list ()
       |> make_find_process in

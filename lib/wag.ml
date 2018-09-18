@@ -91,7 +91,7 @@ let w3m_html_of_ag lines =
         |> Re.Str.replace_first anchor_of_path_and_line_num_regexp "<a href=\"\\1#\\2\">\\0</a>"
         |> Util.flip ( ^ ) "<br>")
 
-let run () =
+let main () =
   let argv_list = Sys.get_argv_list () in
   let last_arg = List.last argv_list in
   let proc = make_ag_process argv_list in
