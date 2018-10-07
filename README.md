@@ -8,24 +8,27 @@ This repository includes a browser in terminal. The original is [wgrep, wlocate,
 
 * Written in OCaml.
 * Sort results by path in lexicographic order.
+* Set the max length of matched results.
 
 ## Demo
 
-Useful alias.
+### wag
 
-![fig1][]
+[ag][] with w3m.
 
-Browse.
+![wag-demo][]
 
-![fig2][]
+### wfind
 
-Open file.
+`find` with w3m. In addition, you can edit results.
 
-![fig3][]
+![wfind-demo][]
 
-Edit file (set your editor in `$HOME/.w3m/config`).
+### wlocate
 
-![fig4][]
+[mlocate][] with w3m. In addition, you can edit results.
+
+![wlocate-demo][]
 
 ## Requirements
 
@@ -73,8 +76,9 @@ If you would like to help making this repository, take the following steps.
 [Build Status]: https://travis-ci.org/r6eve/owtools.svg?branch=master
 [CI Results]: https://travis-ci.org/r6eve/owtools
 [original]: http://shinh.hatenablog.com/entry/20070429/1177827792
-[fig1]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/fig1.png
-[fig2]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/fig2.png
-[fig3]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/fig3.png
-[fig4]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/fig4.png
+[ag]: https://github.com/ggreer/the_silver_searcher
+[mlocate]: https://pagure.io/mlocate
+[wag-demo]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/wag.png
+[wfind-demo]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/wfind.png
+[wlocate-demo]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/wlocate.png
 [r6eve]: https://github.com/r6eve
