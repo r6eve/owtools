@@ -41,7 +41,7 @@ This repository includes a browser in terminal. The original is [wgrep, wlocate,
 ## Installation
 
 ```console
-> opam switch 4.06.0
+> opam switch 4.06.0  # You don't have to execute it if you use OCaml >= 4.06.0.
 > opam install dune re
 > git clone https://github.com/r6eve/owtools.git
 > cd owtools
