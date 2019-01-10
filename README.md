@@ -32,7 +32,7 @@ owtools include browsers for a terminal junker. The original idea is from [wgrep
 
 ## Requirements
 
-* OCaml (>= 4.06.0)
+* OCaml (>= 4.07.0)
 * Dune
 * ocaml-re
 * w3m
