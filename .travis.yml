@@ -8,7 +8,7 @@ os:
   - osx
 
 env:
-  - OCAML_VERSION=4.06
+  - OCAML_VERSION=4.07
 
 sudo: required
 
