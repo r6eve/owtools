@@ -1,0 +1,45 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: ocaml/opam2:alpine-3.9-ocaml-4.07
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: Install System Dependencies
+          command: sudo apk add --no-cache m4
+      - checkout
+      - run:
+          name: Install
+          command: eval `opam config env` && opam pin add -y owtools .
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+      - save_cache:
+          key: opam-{{ arch }}-{{ .Revision }}
+          paths:
+            - /home/opam/.opam/4.07/bin/dune
+            - /home/opam/.opam/4.07/bin/jbuilder
+            - /home/opam/.opam/4.07/lib
+  test:
+    docker:
+      - image: ocaml/opam2:alpine-3.9-ocaml-4.07
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: .
+      - restore_cache:
+          key: opam-{{ arch }}-{{ .Revision }}
+      - run:
+          name: Unit testing
+          command: eval `opam config env` && dune runtest test
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build

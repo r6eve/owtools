@@ -75,8 +75,8 @@ If you would like to help making this repository, take the following steps.
 
 - [r6eve][] - Neat
 
-[Build Status]: https://travis-ci.org/r6eve/owtools.svg?branch=master
-[CI Results]: https://travis-ci.org/r6eve/owtools
+[Build Status]: https://circleci.com/gh/r6eve/owtools.svg?style=svg
+[CI Results]: https://circleci.com/gh/r6eve/owtools
 [original-idea]: http://shinh.hatenablog.com/entry/20070429/1177827792
 [ag]: https://github.com/ggreer/the_silver_searcher
 [mlocate]: https://pagure.io/mlocate
