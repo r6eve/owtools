@@ -3,6 +3,7 @@ WAG = wag
 WFIND = wfind
 WLOCATE = wlocate
 BIN_DIR = bin
+TEST_DIR = test
 
 all:
 	$(DUNE) build
@@ -12,7 +13,7 @@ all:
 	cp _build/install/default/bin/$(WLOCATE) $(BIN_DIR)/$(WLOCATE)
 
 test:
-	$(DUNE) runtest
+	$(DUNE) runtest $(TEST_DIR)
 
 clean:
 	$(DUNE) clean

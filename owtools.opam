@@ -1,12 +1,13 @@
 opam-version: "2.0"
 name: "owtools"
 version: "0.0.2"
+synopsis: "Browser commands for terminal junkers"
 maintainer: "r6eve <r6eve179f@gmail.com>"
 author: "r6eve <r6eve179f@gmail.com>"
 homepage: "https://github.com/r6eve/owtools"
 bug-reports: "https://github.com/r6eve/owtools/issues"
 license: "MIT"
-dev-repo: "git://github.com:r6eve/owtools.git"
+dev-repo: "git+https://github.com:r6eve/owtools.git"
 build: [
   [make]
 ]
