@@ -16,32 +16,32 @@ let find = "find"
 
 let make_find_command opts =
   opts
-    |> List.map (fun s -> String.quote_glob s)
-    |> List.cons find
-    |> String.concat " "
+  |> List.map (fun s -> String.quote_glob s)
+  |> List.cons find
+  |> String.concat " "
 
 let make_find_process opts =
   opts
-    |> make_find_command
-    |> Unix.open_process_in
+  |> make_find_command
+  |> Unix.open_process_in
 
 let check_find_hits lst =
-  if List.is_empty lst then exit 1
-  else ()
+  if List.is_empty lst then
+    exit 1
+  else
+    ()
 
 let sort_find_hits lst =
   List.sort compare lst
 
 let w3m_html_of_find lines =
   lines
-    |> List.map (fun s ->
-      let s = String.escape_html s in
-      "<a href=\"" ^ s ^ "\">" ^ s ^ "</a><br>")
+  |> List.map @@ fun s ->
+    let s = String.escape_html s in
+    "<a href=\"" ^ s ^ "\">" ^ s ^ "</a><br>"
 
 let main () =
-  let proc =
-    Sys.get_argv_list ()
-      |> make_find_process in
+  let proc = make_find_process @@ Sys.get_argv_list () in
   let ss = Sys.read_from_stdin proc in
   (* Discard exit status. *)
   Unix.close_process_in proc |> ignore;

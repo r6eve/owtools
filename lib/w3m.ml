@@ -15,14 +15,13 @@ let make_command () =
   String.concat " " [w3m; "-T"; "text/html"]
 
 let make_process () =
-  make_command ()
-    |> Unix.open_process_out
+  Unix.open_process_out @@ make_command ()
 
 let output out_channel ss =
-  ss
-    |> List.iter (fun s -> output_string out_channel s)
+  let output s = output_string out_channel s in
+  List.iter output ss
 
 let close_process out_channel =
   out_channel
-    |> Unix.close_process_out
-    |> Unix.check_exit "w3m"
+  |> Unix.close_process_out
+  |> Unix.check_exit "w3m"
