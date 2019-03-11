@@ -60,6 +60,10 @@ alias wa='MAX_LENGTH=300 wag -U --hidden --ignore-dir .git --ignore-dir _build'
 wf(){ wfind "$@" -not -path '*/.git/*' -a -not -path '*/target/*' -a -not -path "*/_build/*" -a -type f }
 ```
 
+## Style Guide
+
+* [Jane Street Style Guide][]
+
 ## Contributing
 
 If you would like to help making this repository, take the following steps.
@@ -83,4 +87,5 @@ If you would like to help making this repository, take the following steps.
 [wag-demo]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/wag.png
 [wfind-demo]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/wfind.png
 [wlocate-demo]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/wlocate.png
+[Jane Street Style Guide]: https://opensource.janestreet.com/standards/
 [r6eve]: https://github.com/r6eve
