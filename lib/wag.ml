@@ -102,7 +102,9 @@ let w3m_html_of_ag lines =
     |> String.escape_html
     |> Re.replace_string match_word_color_regexp ~by:by_bold
     |> Re.replace_string Util.all_color_regexp ~by:""
-    |> Re.Str.replace_first anchor_of_path_and_line_num_regexp "<a href=\"\\1#\\2\">\\0</a>"
+    |> Re.Str.replace_first
+       anchor_of_path_and_line_num_regexp
+       "<a href=\"\\1#\\2\">\\0</a>"
     |> Util.flip ( ^ ) "<br>"
 
 let main () =

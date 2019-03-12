@@ -43,7 +43,7 @@ module String = struct
     let rec doit i =
       if i = n then
         s
-      else if CharSet.mem (String.get s i) glob_set then
+      else if CharSet.mem s.[i] glob_set then
         "'" ^ s ^ "'"
       else
         doit @@ succ i
