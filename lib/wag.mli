@@ -26,7 +26,7 @@ val make_ag_process : string list -> in_channel
 val close_ag_process : in_channel -> unit
 *)
 
-val reg_file_p : string -> bool
+val is_reg_file : string -> bool
 (** Return true if the given path is a regular file, otherwise false. *)
 
 val concat_filename : string -> string list -> string list
