@@ -14,7 +14,8 @@ let find = "find"
 
 let make_find_command opts =
   let opts = List.map String.quote_glob opts in
-  String.concat " " @@ List.cons find opts
+  let opt = String.concat " " opts in
+  find ^ " " ^ opt
 
 let make_find_process opts =
   Unix.open_process_in @@ make_find_command opts
@@ -40,7 +41,7 @@ let main () =
   let proc = make_find_process @@ Sys.get_argv_list () in
   let ss = Sys.read_from_stdin proc in
   (* Discard exit status. *)
-  Unix.close_process_in proc |> ignore;
+  ignore @@ Unix.close_process_in proc;
   check_find_hits ss;
   let ss = sort_find_hits ss in
   let html = w3m_html_of_find ss in

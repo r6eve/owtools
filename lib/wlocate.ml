@@ -12,7 +12,8 @@ module Unix = Extensions.Unix
 let locate = "locate"
 
 let make_locate_command opts =
-  String.concat " " @@ List.cons locate opts
+  let opt = String.concat " " opts in
+  locate ^ " " ^ opt
 
 let make_locate_process opts =
   Unix.open_process_in @@ make_locate_command opts
