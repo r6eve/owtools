@@ -18,7 +18,7 @@ let make_locate_process opts =
   Unix.open_process_in @@ make_locate_command opts
 
 let close_locate_process in_channel =
-  Unix.check_exit "locate" @@ Unix.close_process_in in_channel
+  Unix.check_exit locate @@ Unix.close_process_in in_channel
 
 let sort_locate_hits lst =
   List.sort compare lst

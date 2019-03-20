@@ -36,7 +36,7 @@ let make_ag_process opts =
   Unix.open_process_in @@ make_ag_command opts
 
 let close_ag_process in_channel =
-  Unix.check_exit "ag" @@ Unix.close_process_in in_channel
+  Unix.check_exit ag @@ Unix.close_process_in in_channel
 
 let is_reg_file path =
   try
@@ -59,7 +59,7 @@ let sort_ag_hits lst =
     match String.split_on_char ':' path with
     | filename :: n_str :: _ -> filename, int_of_string n_str
     | _ ->
-      prerr_endline "error in sorting";
+      prerr_endline "error in sorting"; (* TODO: use [failwith] *)
       exit 1
   in
   let cmp x y =
