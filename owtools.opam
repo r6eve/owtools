@@ -6,7 +6,7 @@ maintainer: "r6eve <r6eve179f@gmail.com>"
 author: "r6eve <r6eve179f@gmail.com>"
 homepage: "https://github.com/r6eve/owtools"
 bug-reports: "https://github.com/r6eve/owtools/issues"
-license: "MIT"
+license: "Boost Software License - Version 1.0"
 dev-repo: "git+https://github.com:r6eve/owtools.git"
 build: [
   [make]
