@@ -15,10 +15,6 @@ val get_max_length_env : unit -> int option
 (** Return max length variable in environment variables. If no value is set,
     return None. *)
 
-val quote_string_including_spaces : string -> string
-(** Return quoted string if the given string includes spaces, otherwise
-    itself. *)
-
 (*
 TODO:
 val make_ag_command : string list -> string

@@ -10,7 +10,8 @@ module Unix = Extensions.Unix
 let w3m = "w3m"
 
 let make_command () =
-  String.concat " " [w3m; "-T"; "text/html"]
+  let opt = String.concat " " ["-T text/html"] in
+  w3m ^ " " ^ opt
 
 let make_process () =
   Unix.open_process_out @@ make_command ()
