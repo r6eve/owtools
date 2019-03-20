@@ -12,28 +12,24 @@ module Unix = Extensions.Unix
 let locate = "locate"
 
 let make_locate_command opts =
-  opts
-  |> List.cons locate
-  |> String.concat " "
+  String.concat " " @@ List.cons locate opts
 
 let make_locate_process opts =
-  opts
-  |> make_locate_command
-  |> Unix.open_process_in
+  Unix.open_process_in @@ make_locate_command opts
 
 let close_locate_process in_channel =
-  in_channel
-  |> Unix.close_process_in
-  |> Unix.check_exit "locate"
+  Unix.check_exit "locate" @@ Unix.close_process_in in_channel
 
 let sort_locate_hits lst =
   List.sort compare lst
 
-let w3m_html_of_locate ss =
-  ss
-  |> List.map @@ fun s ->
+(* TODO: Duplicated function. *)
+let w3m_html_of_locate lines =
+  let a_href_br s =
     let s = String.escape_html s in
     "<a href=\"" ^ s ^ "\">" ^ s ^ "</a><br>"
+  in
+  List.map a_href_br lines
 
 let main () =
   let proc = make_locate_process @@ Sys.get_argv_list () in

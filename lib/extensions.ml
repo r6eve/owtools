@@ -66,14 +66,12 @@ module Sys = struct
     List.tl @@ Array.to_list @@ Sys.argv
 
   let read_from_stdin input_channel =
-    let rec doit acc =
+    let rec doit ls =
       try
-        input_channel
-        |> input_line
-        |> Util.flip List.cons acc
-        |> doit
+        let l = input_line input_channel in
+        doit @@ List.cons l ls
       with
-        End_of_file -> acc
+        End_of_file -> ls
     in
     doit []
 end

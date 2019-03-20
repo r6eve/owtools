@@ -13,15 +13,11 @@ module Unix = Extensions.Unix
 let find = "find"
 
 let make_find_command opts =
-  opts
-  |> List.map (fun s -> String.quote_glob s)
-  |> List.cons find
-  |> String.concat " "
+  let opts = List.map String.quote_glob opts in
+  String.concat " " @@ List.cons find opts
 
 let make_find_process opts =
-  opts
-  |> make_find_command
-  |> Unix.open_process_in
+  Unix.open_process_in @@ make_find_command opts
 
 let check_find_hits lst =
   if List.is_empty lst then
@@ -32,11 +28,13 @@ let check_find_hits lst =
 let sort_find_hits lst =
   List.sort compare lst
 
+(* TODO: Duplicated function. *)
 let w3m_html_of_find lines =
-  lines
-  |> List.map @@ fun s ->
+  let a_href_br s =
     let s = String.escape_html s in
     "<a href=\"" ^ s ^ "\">" ^ s ^ "</a><br>"
+  in
+  List.map a_href_br lines
 
 let main () =
   let proc = make_find_process @@ Sys.get_argv_list () in

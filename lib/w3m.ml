@@ -20,6 +20,4 @@ let output out_channel ss =
   List.iter output ss
 
 let close_process out_channel =
-  out_channel
-  |> Unix.close_process_out
-  |> Unix.check_exit "w3m"
+  Unix.check_exit "w3m" @@ Unix.close_process_out out_channel
