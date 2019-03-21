@@ -1,13 +1,13 @@
 (executables
  (names extensions util)
- (libraries owtools qcheck))
+ (libraries owtools oUnit))
 
 (alias
  (name runtest)
  (deps extensions.exe)
- (action (run %{deps} -q --color=always)))
+ (action (run %{deps})))
 
 (alias
  (name runtest)
  (deps util.exe)
- (action (run %{deps} -q --color=always)))
+ (action (run %{deps})))

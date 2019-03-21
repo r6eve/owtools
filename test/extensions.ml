@@ -5,12 +5,23 @@
  *           https://www.boost.org/LICENSE_1_0.txt)
  *)
 
-open Owtools
-module String = Extensions.String
+open OUnit2
+
+module String = Owtools.Extensions.String
+
+let quote_glob _test_ctxt =
+  assert_equal "'foo*bar'" @@ String.quote_glob "foo*bar";
+  assert_equal "foobar" @@ String.quote_glob "foobar"
+
+let escape_html _test_ctxt =
+  assert_equal "&#34;&#62;&#60;script&#62;alert(document.cookie)&#60;/script&#62;" @@
+    String.escape_html "\"><script>alert(document.cookie)</script>"
+
+let suite =
+  "Extensions suite" >:::
+     [ "quote_glob" >:: quote_glob
+     ; "escape_html" >:: escape_html
+     ]
 
 let () =
-  assert (String.quote_glob "foo*bar" = "'foo*bar'");
-  assert (String.quote_glob "foobar" = "foobar");
-  assert (
-    String.escape_html "\"><script>alert(document.cookie)</script>"
-    = "&#34;&#62;&#60;script&#62;alert(document.cookie)&#60;/script&#62;")
+  run_test_tt_main suite
