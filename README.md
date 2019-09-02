@@ -66,7 +66,7 @@ wf(){ wfind "$@" -not -path '*/.git/*' -a -not -path '*/target/*' -a -not -path 
 
 ## Contributing
 
-If you would like to help making this repository, take the following steps.
+If you would like to help make this repository, take the following steps.
 
 1. Fork this repository: https://github.com/r6eve/owtools/fork
 2. Switch branches: `git checkout -b new-feature`
