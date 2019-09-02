@@ -1,20 +1,15 @@
 DUNE = dune
-WAG = wag
-WFIND = wfind
-WLOCATE = wlocate
 BIN_DIR = bin
 TEST_DIR = test
 
 all:
 	$(DUNE) build
-	mkdir -p bin
-	cp _build/install/default/bin/$(WAG) $(BIN_DIR)/$(WAG)
-	cp _build/install/default/bin/$(WFIND) $(BIN_DIR)/$(WFIND)
-	cp _build/install/default/bin/$(WLOCATE) $(BIN_DIR)/$(WLOCATE)
+	-rm -f $(BIN_DIR)
+	ln -s _build/install/default/bin $(BIN_DIR)
 
 test:
 	$(DUNE) runtest $(TEST_DIR)
 
 clean:
 	$(DUNE) clean
-	-rm -rf $(BIN_DIR)
+	-rm -f $(BIN_DIR)
