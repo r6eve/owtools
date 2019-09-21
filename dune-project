@@ -17,4 +17,4 @@
   (dune :build)
   (ounit (>= 2.0.8))
   re)
- (synopsis "Unix system programming in OCaml on Linux"))
+ (synopsis "Browser commands for terminal junkers"))
