@@ -1,4 +1,4 @@
-(lang dune 1.11)
+(lang dune 1.10)
 (name owtools)
 (version 0.0.2)
 
