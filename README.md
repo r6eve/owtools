@@ -42,7 +42,7 @@ owtools include browsers for a terminal junker. The original idea is from [wgrep
 
 ```console
 > opam update
-> opam install dune re qcheck
+> opam install dune ounit re qcheck
 > git clone https://github.com/r6eve/owtools.git
 > cd owtools
 > make
