@@ -1,0 +1,24 @@
+name: main
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup OCaml
+      uses: avsm/setup-ocaml@master
+      with:
+        ocaml-version: '4.08.1'
+    - name: Cache opam repository
+      uses: actions/cache@v1
+      with:
+        path: ~/.opam
+        key: ${{ runner.os }}-opam-${{ hashFiles('**/*.opam') }}
+        restore-keys: |
+          ${{ runner.os }}-opam-
+    - name: Install
+      run: eval `opam config env` && opam pin add -y owtools .
+    - name: Run tests
+      run: make test
