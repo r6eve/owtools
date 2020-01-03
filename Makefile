@@ -1,15 +1,32 @@
-DUNE = dune
-BIN_DIR = bin
-TEST_DIR = test
+.PHONY: help build test coverage clean
 
-all:
-	$(DUNE) build
-	-rm -f $(BIN_DIR)
-	ln -s _build/install/default/bin $(BIN_DIR)
+.DEFAULT_GOAL := build
 
-test:
-	$(DUNE) runtest $(TEST_DIR)
+CYAN := \033[36m
+GREEN := \033[32m
+RESET := \033[0m
 
-clean:
-	$(DUNE) clean
-	-rm -f $(BIN_DIR)
+help: ## Show this help
+	@grep -E '^[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
+	| awk 'BEGIN {FS = ":.*?## "}; {printf "$(CYAN)%-30s$(RESET) %s\n", $$1, $$2}'
+
+build: ## Build
+	@dune build
+	@rm -f bin
+	@ln -s _build/install/default/bin bin
+
+test: ## Run tests
+	@echo -e "$(GREEN)Running tests$(RESET)"
+	@dune build
+	@dune runtest test
+
+coverage: ## Estimate coverage
+	@echo -e "$(GREEN)Estimating coverage$(RESET)"
+	-rm -f `find . -name 'bisect*.out'`
+	@BISECT_ENABLE=YES dune runtest --force
+	@bisect-ppx-report -I _build/default/ -html _coverage/ \
+		`find . -name 'bisect*.out'`
+
+clean: ## Clean projects
+	@dune clean
+	-rm -f bin
