@@ -10,7 +10,7 @@ jobs:
     - name: Setup OCaml
       uses: ocaml/setup-ocaml@v2
       with:
-        ocaml-compiler: '4.08.1'
+        ocaml-compiler: 4.12.x
     - name: Cache opam repository
       uses: actions/cache@v2.1.6
       with:
