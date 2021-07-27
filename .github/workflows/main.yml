@@ -8,9 +8,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2.3.4
     - name: Setup OCaml
-      uses: avsm/setup-ocaml@master
+      uses: ocaml/setup-ocaml@v2
       with:
-        ocaml-version: '4.08.1'
+        ocaml-compiler: '4.08.1'
     - name: Cache opam repository
       uses: actions/cache@v2.1.5
       with:
@@ -19,6 +19,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-opam-
     - name: Install
-      run: eval `opam config env` && opam pin add -y owtools .
+      run: opam install . --deps-only
     - name: Run tests
-      run: eval `opam config env` && make test
+      run: |
+        opam exec -- dune build
+        opam exec -- dune runtest
