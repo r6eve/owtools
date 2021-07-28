@@ -11,13 +11,6 @@ jobs:
       uses: ocaml/setup-ocaml@v2
       with:
         ocaml-compiler: 4.12.x
-    - name: Cache opam repository
-      uses: actions/cache@v2.1.6
-      with:
-        path: ~/.opam
-        key: ${{ runner.os }}-opam-${{ hashFiles('**/*.opam') }}
-        restore-keys: |
-          ${{ runner.os }}-opam-
     - name: Install
       run: opam install . --deps-only
     - name: Run tests
