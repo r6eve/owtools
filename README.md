@@ -60,25 +60,6 @@ alias wa='MAX_LENGTH=300 wag -U --hidden --ignore-dir .git --ignore-dir _build'
 wf(){ wfind "$@" -not -path '*/.git/*' -a -not -path '*/target/*' -a -not -path "*/_build/*" -a -type f }
 ```
 
-## Style Guide
-
-* [Jane Street Style Guide][]
-
-## Contributing
-
-If you would like to help make this repository, take the following steps.
-
-1. Fork this repository: https://github.com/r6eve/owtools/fork
-2. Switch branches: `git checkout -b new-feature`
-3. Do something.
-4. Commits: `git commit -am 'add some feature'`
-5. Push to your repository: `git push origin new-feature`
-6. Send a pull request.
-
-## Contributors
-
-- [r6eve][] - Neat
-
 [Build Status]: https://github.com/r6eve/owtools/workflows/main/badge.svg
 [CI Results]: https://github.com/r6eve/owtools/actions
 [original-idea]: http://shinh.hatenablog.com/entry/20070429/1177827792
@@ -87,5 +68,3 @@ If you would like to help make this repository, take the following steps.
 [wag-demo]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/wag.png
 [wfind-demo]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/wfind.png
 [wlocate-demo]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/wlocate.png
-[Jane Street Style Guide]: https://opensource.janestreet.com/standards/
-[r6eve]: https://github.com/r6eve
