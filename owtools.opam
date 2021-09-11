@@ -5,7 +5,7 @@ authors: ["r6eve <r6eve@acm.org>"]
 bug-reports: "https://github.com/r6eve/owtools/issues"
 homepage: "https://github.com/r6eve/owtools"
 license: "BSL-1.0"
-version: "0.0.2"
+version: "0.1.0"
 dev-repo: "git+https://github.com/r6eve/owtools.git"
 synopsis: "Browser commands for terminal junkers"
 depends: [
