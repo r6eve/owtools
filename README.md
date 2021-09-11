@@ -40,6 +40,8 @@ owtools include browsers for a terminal junker. The original idea is from [wgrep
 
 ## Installation
 
+### From source codes
+
 ```console
 > opam update
 > opam install dune ounit re qcheck
@@ -51,6 +53,11 @@ wag*  wfind*  wlocate*
 
 # Then, move those bins to PATH, or export PATH to add there.
 ```
+
+### From executable binaries
+
+See [Releases][]. `owtools-x86_64-unknown-linux-musl.tar.zst` includes
+statically linked binaries.
 
 ## Useful Aliases and Functions
 
@@ -68,3 +75,4 @@ wf(){ wfind "$@" -not -path '*/.git/*' -a -not -path '*/target/*' -a -not -path 
 [wag-demo]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/wag.png
 [wfind-demo]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/wfind.png
 [wlocate-demo]: https://raw.githubusercontent.com/r6eve/screenshots/master/owtools/wlocate.png
+[Releases]: https://github.com/r6eve/owtools/releases
