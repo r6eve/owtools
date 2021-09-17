@@ -59,6 +59,15 @@ wag*  wfind*  wlocate*
 See [Releases][]. `owtools-x86_64-unknown-linux-musl.tar.zst` includes
 statically linked binaries.
 
+#### Arch Linux
+
+```console
+git clone https://github.com/r6eve/AUR
+cd AUR/owtools-bin
+makepkg -s
+pacman -U owtools-bin-${pkgver}-${pkgrel}-x86_64.pkg.tar.zst
+```
+
 ## Useful Aliases and Functions
 
 ```bash
