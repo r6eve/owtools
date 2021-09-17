@@ -32,27 +32,31 @@ owtools include browsers for a terminal junker. The original idea is from [wgrep
 
 ## Requirements
 
-* OCaml (>= 4.07.0)
-* Dune
-* ocaml-re
-* w3m
-* ag, find, mlocate
+#### Execute
+
+- Depends : w3m
+- Optional : ag, find, mlocate
+
+#### Build from source codes
+
+- OCaml (>= 4.07.0)
+- Dune
+- ocaml-re
 
 ## Installation
 
 ### From source codes
 
-```console
-> opam update
-> opam install dune ounit re qcheck
-> git clone https://github.com/r6eve/owtools.git
-> cd owtools
-> make
-> ls bin
-wag*  wfind*  wlocate*
-
-# Then, move those bins to PATH, or export PATH to add there.
+```bash
+opam update
+opam install dune ounit re qcheck
+git clone https://github.com/r6eve/owtools
+cd owtools
+make
+ls bin  # wag*  wfind*  wlocate*
 ```
+
+Then, move those bins to PATH, or export PATH to add there.
 
 ### From executable binaries
 
@@ -61,7 +65,7 @@ statically linked binaries.
 
 #### Arch Linux
 
-```console
+```bash
 git clone https://github.com/r6eve/AUR
 cd AUR/owtools-bin
 makepkg -s
