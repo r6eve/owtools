@@ -1,6 +1,6 @@
 (lang dune 1.10)
 (name owtools)
-(version 0.1.0)
+(version 0.1.1)
 
 (implicit_transitive_deps true)
 (generate_opam_files true)
