@@ -10,7 +10,7 @@ jobs:
     - name: Setup OCaml
       uses: ocaml/setup-ocaml@v2
       with:
-        ocaml-compiler: 4.12.x
+        ocaml-compiler: 4.12.0
     - name: Install
       run: opam install . --deps-only
     - name: Run tests
