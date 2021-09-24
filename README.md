@@ -60,8 +60,8 @@ Then, move those bins to PATH, or export PATH to add there.
 
 ### From executable binaries
 
-See [Releases][]. `owtools-x86_64-unknown-linux-musl.tar.zst` includes
-statically linked binaries.
+See [Releases][]. `owtools-${version}-x86_64-unknown-linux-musl.tar.zst`
+includes statically linked binaries.
 
 #### Arch Linux
 
