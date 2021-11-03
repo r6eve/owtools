@@ -14,7 +14,7 @@ jobs:
         arch:
           - x86_64-unknown-linux-musl
     steps:
-      - uses: actions/checkout@v2.3.5
+      - uses: actions/checkout@v2.4.0
       - name: Setup OCaml
         uses: ocaml/setup-ocaml@v2
         with:
