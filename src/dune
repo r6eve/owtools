@@ -1,5 +1,5 @@
 (executables
- (names wag wfind wlocate)
- (public_names wag wfind wlocate)
+ (names wag wrg wfind wlocate)
+ (public_names wag wrg wfind wlocate)
  (flags (-w A-4-9-40-42-44-45 -warn-error A-4-9-34-40-42-44-45-58))
  (libraries owtools))
