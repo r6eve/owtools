@@ -27,7 +27,7 @@ jobs:
           version=$(basename ${{ github.ref }})
           pkg=owtools-${version}-${{ matrix.arch }}
           mkdir ${pkg}
-          cp _build/install/default/bin/{wag,wfind,wlocate} ${pkg}
+          cp _build/install/default/bin/{wag,wrg,wfind,wlocate} ${pkg}
           tar --zstd -cf ${pkg}.tar.zst ${pkg}
           mkdir pack
           mv ${pkg}.tar.zst pack/
